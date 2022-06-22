@@ -5,7 +5,8 @@ using UnityEngine;
 public class Canion : MonoBehaviour
 {
 
-    public GameObject objectToSpawn;
+    public GameObject BulletToSpawn;
+    public Transform CanionPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +17,10 @@ public class Canion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // nada por ahora
+        
     }
     public void Disparo()
     {
-        Instantiate(objectToSpawn, transform);
+        Instantiate(BulletToSpawn, CanionPosition);
     }
 }
