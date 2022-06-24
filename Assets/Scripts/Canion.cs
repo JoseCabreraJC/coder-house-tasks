@@ -21,38 +21,24 @@ public class Canion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.L))
-            {
-                Disparo();
-            }
-
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.L))
+        {
+            Disparo();
+        }
     }
     public void Disparo()
     {
-        if (BulletsCreated < MaxBullets)
+        GameObject bullet = BulletsList[BulletsCreated];
+        if (!bullet.activeSelf)
         {
-            for (int i = 0; i < BulletsList.Count; i++)
-            {
-                if (!BulletsList[i].activeSelf)
-                {
-                    BulletsList[i].SetActive(true);
-                    BulletsCreated++;
-                    break;
-                }
-            }
+            bullet.SetActive(true);
         }
         else
         {
-            for (int i = 0; i < BulletsList.Count; i++)
-            {
-                if (BulletsList[i].activeSelf)
-                {
-                    BulletsList[i].transform.position = CanionPosition.position;
-                    break;
-                }
-            }
+            bullet.transform.position = CanionPosition.position;
         }
-
+        BulletsCreated++;
+        if (BulletsCreated == MaxBullets) BulletsCreated = 0;
     }
     public void InstantiateBullets()
     {
@@ -61,7 +47,6 @@ public class Canion : MonoBehaviour
             GameObject bullet = Instantiate(BulletToSpawn, CanionPosition);
             bullet.SetActive(false);
             BulletsList.Add(bullet);
-
         }
     }
 }
