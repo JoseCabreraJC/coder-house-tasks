@@ -245,11 +245,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890463786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6de17ccddfc8e404d8b8bc2b55b5b81f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hor: 0
+  ver: 0
+  speed: 2
 --- !u!65 &890463789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -356,6 +359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a439d4b47aaceb142b649c0c0da47284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 3
+  bulletTimer: 2
+  bulletLifeSpawn: 3
   BulletToSpawn: {fileID: 5701825392396819112, guid: 409567754c3496d47bf39d09780266b7, type: 3}
   CanionPosition: {fileID: 1962844133}
   MaxBullets: 4
@@ -437,13 +443,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.11619185, y: 0.35953277, z: -0.045173276, w: 0.92476755}
-  m_LocalPosition: {x: -2.9845538, y: 2.5361214, z: -3.254848}
+  m_LocalRotation: {x: 0.09096269, y: 0.69411016, z: -0.04794749, w: 0.71248716}
+  m_LocalPosition: {x: -3.913, y: 2.809, z: -3.854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 151.753, y: 220.394, z: 180}
+  m_LocalEulerAnglesHint: {x: 168.686, y: 268.839, z: 183.388}
 --- !u!1 &1064212041
 GameObject:
   m_ObjectHideFlags: 0

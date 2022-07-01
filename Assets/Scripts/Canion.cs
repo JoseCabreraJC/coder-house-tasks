@@ -4,67 +4,49 @@ using UnityEngine;
 
 public class Canion : MonoBehaviour
 {
+    public float timer;
+    public float tiempoEntreBalas = 2f;
+    public float tiempoDeVidaBala = 8f;
 
     public GameObject BulletToSpawn;
     public Transform CanionPosition;
 
     public int MaxBullets = 4;
     public int BulletsCreated = 0;
-    public List<GameObject> BulletsList;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        InstantiateBullets();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        timer -= Time.deltaTime;
+        if (timer < 0)
         {
+            Debug.Log("Pium Temporizado");
+            RestartTimer();
             Disparo();
         }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Disparo(2);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Disparo(3);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Disparo(4);
-        }
 
-    }
-    public void Disparo(int bulletsNeeded = 1)
-    {
-        Vector3 bulletOffset = new Vector3(0 , 0, 0.25f);
-        for (int i = 0; i < bulletsNeeded; i++)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Pium");
-            GameObject bullet = BulletsList[BulletsCreated];
-            if (!bullet.activeSelf)
-            {
-                bullet.SetActive(true);
-            }
-            else
-            {
-                bullet.transform.position = CanionPosition.position + (bulletOffset * i);
-            }
-            BulletsCreated++;
-            if (BulletsCreated == MaxBullets) BulletsCreated = 0;
+            ScaleDuplicate();
         }
     }
-    public void InstantiateBullets()
+    void RestartTimer()
     {
-        for (int i = 0; i < MaxBullets; i++)
+        timer = tiempoEntreBalas;
+    }
+    void ScaleDuplicate()
+    {
+        int totalBullets = CanionPosition.transform.childCount;
+        for (int i = 0; i <= totalBullets - 1; i++)
         {
-            GameObject bullet = Instantiate(BulletToSpawn, CanionPosition);
-            bullet.SetActive(false);
-            BulletsList.Add(bullet);
+            Debug.Log("Pium agrandado");
+            Transform bullet = CanionPosition.transform.GetChild(i);
+            bullet.localScale *= 2;
         }
+    }
+    void Disparo()
+    {
+        GameObject bullet = Instantiate(BulletToSpawn, CanionPosition);
+        Destroy(bullet, tiempoDeVidaBala);
     }
 }
