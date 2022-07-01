@@ -10,10 +10,6 @@ public class Canion : MonoBehaviour
 
     public GameObject BulletToSpawn;
     public Transform CanionPosition;
-
-    public int MaxBullets = 4;
-    public int BulletsCreated = 0;
-
     // Update is called once per frame
     void Update()
     {
@@ -36,12 +32,10 @@ public class Canion : MonoBehaviour
     }
     void ScaleDuplicate()
     {
-        int totalBullets = CanionPosition.transform.childCount;
-        for (int i = 0; i <= totalBullets - 1; i++)
+        foreach (Transform child in CanionPosition.transform)
         {
-            Debug.Log("Pium agrandado");
-            Transform bullet = CanionPosition.transform.GetChild(i);
-            bullet.localScale *= 2;
+            Debug.Log(child);
+            child.localScale *= 2;
         }
     }
     void Disparo()
