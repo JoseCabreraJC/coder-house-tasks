@@ -7,7 +7,7 @@ public class Move : MonoBehaviour
     Vector3 Vec;
     public float hor;
     public float ver;
-    public float speed = 4;
+    public float speed = 6;
     // Update is called once per frame
     void Update()
     {
