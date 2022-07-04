@@ -11,8 +11,8 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoverInternet();
-        //MoverClase();
+        //MoverInternet();
+        MoverClase();
     }
     public void MoverInternet()
     {
@@ -27,6 +27,6 @@ public class Move : MonoBehaviour
         hor = Input.GetAxis("Horizontal");
         ver = Input.GetAxis("Vertical");
         
-        transform.Translate(new Vector3(hor, 0, ver ) * speed * Time.deltaTime);
+        transform.Translate(new Vector3(hor*(-1), 0, ver * (-1)) * speed * Time.deltaTime);
     }
 }
