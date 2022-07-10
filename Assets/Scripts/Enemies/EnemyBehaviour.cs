@@ -7,12 +7,10 @@ public class EnemyBehaviour : MonoBehaviour
     public enum Comportamientos { follow, lookAt };
 
     public Comportamientos comportamientoEnemigo = Comportamientos.lookAt;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log(transform.magnitude);
-        Debug.Log(transform.normalized);
-    }
+    public Transform transformJugador;
+
+    public float movementSpeed = 2f;
+
 
     // Update is called once per frame
     void Update()
@@ -20,23 +18,32 @@ public class EnemyBehaviour : MonoBehaviour
         switch (comportamientoEnemigo)
         {
             case Comportamientos.follow:
-                Follow();
+                if (CheckDistance() > 2)
+                {
+                    FollowPlayer();
+                }
                 break;
             case Comportamientos.lookAt:
-                LookAt();
+                LookAtPlayer();
                 break;
             default:
                 break;
         }
     }
-    void Follow()
+    void FollowPlayer()
     {
-        // Follow the player
+        transform.position = Vector3.MoveTowards(transform.position, transformJugador.position, Time.deltaTime * movementSpeed);
     }
-    void LookAt()
+    float CheckDistance()
     {
-        // Look at the player
+        float distance = Vector3.Distance(transform.position, transformJugador.position);
+        return distance;
     }
 
+    void LookAtPlayer()
+    {
+        Quaternion rot = Quaternion.LookRotation(transformJugador.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime);
+    }
 
 }
